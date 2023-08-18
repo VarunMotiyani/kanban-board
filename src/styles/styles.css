@@ -1,0 +1,167 @@
+/* Board */
+/* Board */
+/* Board */
+/* Board */
+/* Board */
+.board {
+    display: flex;
+    padding: 20px;
+    background-color: #f5f5f5; /* Set the background color for the entire board */
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    overflow-x: auto; /* Add horizontal scroll when columns overflow */
+  }
+  
+  .column {
+    flex: 0 0 auto;
+    padding: 0px;
+    width: 300px;
+    margin-right: 10px; /* Add margin only on the right side */
+    background-color: transparent; /* Remove background color for each column */
+    overflow-y: auto; /* Add vertical scroll if content overflows */
+  }
+  .column-header {
+    background-color: #ffffff;
+    /* padding: 10px; */
+    /* border-bottom: 1px solid #e0e0e0; */
+    position: sticky;
+    top: 0; /* Stick the header to the top while scrolling */
+    z-index: 1; /* Ensure the header appears above the tasks */
+  }
+  .column:last-child {
+    margin-right: 0; /* Remove margin from the last column */
+  }
+  
+  .column-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  /* Rest of your existing styles... */
+  
+  
+  /* Rest of your existing styles... */
+  
+  
+  /* Rest of your existing styles... */
+  
+  /* Rest of your existing styles... */
+  
+  
+  .task {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  
+  .options-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+  }
+  
+  .options {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .option {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .task-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .task-type {
+    color: #888;
+  }
+  
+  /* Navbar */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .grouping, .ordering {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  span {
+    margin-right: 5px;
+  }
+  
+  /* styles.css */
+.display-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .display-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .display-button.open {
+    background-color: #45a049;
+  }
+  
+  .display-options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 240px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .display-options > * {
+    margin-bottom: 0;
+  }
+  
