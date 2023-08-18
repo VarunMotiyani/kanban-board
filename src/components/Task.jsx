@@ -1,10 +1,10 @@
-import React from 'react';
-import { Card, CardHeader, CardContent, CardActions, IconButton, Menu, MenuItem, Typography, Avatar, Box } from '@mui/material';
+import React, { useState } from 'react';
+import { Card, CardHeader, CardContent, Typography, IconButton, Menu, MenuItem, Avatar, Box } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const Task = ({ task, updateTaskStatus }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [expanded, setExpanded] = useState(false);
 
   const handleOptionsClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -19,21 +19,45 @@ const Task = ({ task, updateTaskStatus }) => {
     handleOptionsClose();
   };
 
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   const userInitials = task.userId.split('-').map(word => word[0]).join('');
   const avatarBackgroundColor = getRandomColor(); // Get a random color for the avatar background
 
   return (
-    <Card sx={{ borderRadius: '10px', width: '100%', maxWidth: 800, margin: '0 auto 13px', display: 'flex', flexDirection: 'column' }}>
+    <Card sx={{ borderRadius: '10px', width: '100%', maxWidth: 800, margin: '0 auto 13px', display: 'flex', flexDirection: 'column', minHeight: expanded ? 'auto' : '100%' }}>
       <CardHeader
-        subheader={task.id}
-        avatar={
-          <Avatar sx={{ bgcolor: avatarBackgroundColor }}>{userInitials}</Avatar>
+        subheader={
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {task.id}
+            <Avatar sx={{ bgcolor: avatarBackgroundColor, marginBottom: '-8px', width: '25px', height: '25px', marginLeft: 'auto' }}>
+              <Typography sx={{ fontSize: '0.8rem' }}>{userInitials}</Typography>
+            </Avatar>
+          </Box>
         }
+        sx={{ paddingBottom: '4px' }}
       />
       <CardContent sx={{ flexGrow: 1 }}>
-        <Typography sx={{ variant: 'h6', fontSize: '1rem', textAlign: 'left' }}>
-          {task.title}
+        <Typography sx={{ variant: 'h6', fontSize: '1rem', textAlign: 'left', lineHeight: '1.5rem', marginTop: '-8px', marginBottom: '8px' }}>
+          <Box
+            overflow="hidden"
+            textOverflow={expanded ? 'unset' : 'ellipsis'}
+            whiteSpace={expanded ? 'normal' : 'nowrap'}
+            onClick={handleExpandClick}
+            style={{ cursor: 'pointer' }}
+          >
+            {task.title}
+          </Box>
         </Typography>
+        {task.title.length > 50 && !expanded && (
+          <Typography variant="body2" color="text.secondary">
+            {/* <IconButton onClick={handleExpandClick} aria-label="read-more">
+              Read More
+            </IconButton> */}
+          </Typography>
+        )}
         <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           {task.tag}
           <IconButton aria-label="options" onClick={handleOptionsClick}>
@@ -41,7 +65,7 @@ const Task = ({ task, updateTaskStatus }) => {
           </IconButton>
           <Menu
             anchorEl={anchorEl}
-            open={open}
+            open={Boolean(anchorEl)}
             onClose={handleOptionsClose}
           >
             {task.status !== 'Todo' && (
