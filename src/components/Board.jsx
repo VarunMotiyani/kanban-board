@@ -17,8 +17,16 @@ const Board = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+        if (storedTasks) {
+          setTasks(storedTasks);
+        } else {
+          const data = await fetchTasks();
+          setTasks(data.tickets);
+          localStorage.setItem('tasks', JSON.stringify(data.tickets));
+        }
+
         const data = await fetchTasks();
-        setTasks(data.tickets);
         setUsers(data.users);
       } catch (error) {
         console.error('Error fetching tasks:', error);
@@ -29,14 +37,22 @@ const Board = () => {
   }, []);
 
   useEffect(() => {
+    // Retrieve grouping and ordering from localStorage on component mount
+    const storedGrouping = localStorage.getItem('grouping');
+    const storedOrdering = localStorage.getItem('ordering');
+    if (storedGrouping) {
+      setGrouping(storedGrouping);
+    }
+    if (storedOrdering) {
+      setOrdering(storedOrdering);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Store grouping and ordering in localStorage when they change
     localStorage.setItem('grouping', grouping);
     localStorage.setItem('ordering', ordering);
   }, [grouping, ordering]);
- 
-  useEffect(() => {
-    // Save tasks to Local Storage whenever tasks change
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
 
   const statusColumns = ['Backlog', 'Todo', 'In progress', 'Done', 'Cancelled'];
   const priorityColumns = ['No Priority', 'Low', 'Medium', 'High', 'Urgent'];
@@ -74,11 +90,12 @@ const Board = () => {
   };
 
   const updateTaskStatus = (taskId, newStatus) => {
-    setTasks(prevTasks =>
-      prevTasks.map(task =>
-        task.id === taskId ? { ...task, status: newStatus } : task
-      )
+    const updatedTasks = tasks.map(task =>
+      task.id === taskId ? { ...task, status: newStatus } : task
     );
+
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   };
 
   const groupedTasks = groupTasks(tasks, grouping);
