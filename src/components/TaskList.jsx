@@ -15,7 +15,7 @@ const TaskList = () => {
 
     fetchData();
   }, []);
-  console.log(fetchTasks)
+//   console.log(users)
 
   const updateTaskStatus = (taskId, newStatus) => {
     // Find the task in the tasks array by taskId
@@ -29,8 +29,9 @@ const TaskList = () => {
 
   return (
     <div>
+
 {tasks.map(task => (
-  <Task key={task.id} task={task} users={users} updateTaskStatus={updateTaskStatus} />
+  <Task key={task.id} task={task} updateTaskStatus={updateTaskStatus}  />
   
 ))}
 

@@ -1,6 +1,18 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, FormControl, Button, Menu, MenuItem } from '@mui/material';
-import '../styles/styles.css';
+import {
+  AppBar,
+  Toolbar,
+  FormControl,
+  Button,
+  Menu,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+} from '@mui/material';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+import SegmentIcon from '@mui/icons-material/Segment';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const Navbar = ({ handleGroupingChange, handleOrderingChange }) => {
   const [displayMenuAnchor, setDisplayMenuAnchor] = React.useState(null);
@@ -41,65 +53,93 @@ const Navbar = ({ handleGroupingChange, handleOrderingChange }) => {
     closeOrderingMenu();
   };
 
+  const handleClearLocalStorage = () => {
+    localStorage.clear(); // Clear local storage
+    window.location.reload(); // Reload the page to reflect the changes
+  };
+
   return (
     <AppBar position="static" color="primary">
       <Toolbar>
-        <Typography variant="h6">Task Board</Typography>
+        <Button
+          color="inherit"
+          aria-controls="display-menu"
+          aria-haspopup="true"
+          variant="outlined"
+          onClick={openDisplayMenu}
+          style={{ color: 'black', fontWeight: 'bold' }}
+        >
+          <SegmentIcon />
+          Display
+          <ArrowDropDownIcon />
+        </Button>
+        <Menu
+          id="display-menu"
+          anchorEl={displayMenuAnchor}
+          keepMounted
+          open={Boolean(displayMenuAnchor)}
+          onClose={closeDisplayMenu}
+        >
+          {/* <MenuItem onClick={closeDisplayMenu}>
+            <ListItemIcon>
+              <SegmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Display" />
+          </MenuItem>
+          <Divider /> */}
+          <MenuItem onClick={openGroupingMenu}>
+            <ListItemIcon>
+              <SegmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Grouping" />
+            <ArrowDropDownIcon />
+          </MenuItem>
+          <Menu
+            id="grouping-menu"
+            anchorEl={groupingMenuAnchor}
+            open={Boolean(groupingMenuAnchor)}
+            onClose={closeGroupingMenu}
+          >
+            <MenuItem onClick={() => handleGroupingOptionChange('status')}>
+              Status
+            </MenuItem>
+            <MenuItem onClick={() => handleGroupingOptionChange('user')}>
+              User
+            </MenuItem>
+            <MenuItem onClick={() => handleGroupingOptionChange('priority')}>
+              Priority
+            </MenuItem>
+          </Menu>
+          <MenuItem onClick={openOrderingMenu}>
+            <ListItemIcon>
+              <SegmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Ordering" />
+            <ArrowDropDownIcon />
+          </MenuItem>
+          <Menu
+            id="ordering-menu"
+            anchorEl={orderingMenuAnchor}
+            open={Boolean(orderingMenuAnchor)}
+            onClose={closeOrderingMenu}
+          >
+            <MenuItem onClick={() => handleOrderingOptionChange('priority')}>
+              Priority
+            </MenuItem>
+            <MenuItem onClick={() => handleOrderingOptionChange('title')}>
+              Title
+            </MenuItem>
+          </Menu>
+        </Menu>
         <FormControl sx={{ marginLeft: 'auto' }}>
           <Button
             color="inherit"
-            aria-controls="display-menu"
-            aria-haspopup="true"
-            variant="outlined"
-            onClick={openDisplayMenu}
+            onClick={handleClearLocalStorage}
+            style={{ color: 'black', fontWeight: 'bold' }}
           >
-            Display
+            <ClearAllIcon sx={{ marginRight: 1 }} />
+            Clear Options
           </Button>
-          <Menu
-            id="display-menu"
-            anchorEl={displayMenuAnchor}
-            keepMounted
-            open={Boolean(displayMenuAnchor)}
-            onClose={closeDisplayMenu}
-          >
-            <MenuItem>
-              <Button
-                aria-controls="grouping-menu"
-                aria-haspopup="true"
-                onClick={openGroupingMenu}
-              >
-                Grouping
-              </Button>
-              <Menu
-                id="grouping-menu"
-                anchorEl={groupingMenuAnchor}
-                open={Boolean(groupingMenuAnchor)}
-                onClose={closeGroupingMenu}
-              >
-                <MenuItem onClick={() => handleGroupingOptionChange('status')}>Status</MenuItem>
-                <MenuItem onClick={() => handleGroupingOptionChange('user')}>User</MenuItem>
-                <MenuItem onClick={() => handleGroupingOptionChange('priority')}>Priority</MenuItem>
-              </Menu>
-            </MenuItem>
-            <MenuItem>
-              <Button
-                aria-controls="ordering-menu"
-                aria-haspopup="true"
-                onClick={openOrderingMenu}
-              >
-                Ordering
-              </Button>
-              <Menu
-                id="ordering-menu"
-                anchorEl={orderingMenuAnchor}
-                open={Boolean(orderingMenuAnchor)}
-                onClose={closeOrderingMenu}
-              >
-                <MenuItem onClick={() => handleOrderingOptionChange('priority')}>Priority</MenuItem>
-                <MenuItem onClick={() => handleOrderingOptionChange('title')}>Title</MenuItem>
-              </Menu>
-            </MenuItem>
-          </Menu>
         </FormControl>
       </Toolbar>
     </AppBar>

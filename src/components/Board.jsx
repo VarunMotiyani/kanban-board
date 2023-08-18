@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import Column from './Column';
 import { fetchTasks } from '../services/ApiService';
 import '../styles/styles.css';
+import TaskList from './TaskList';
 
 const Board = () => {
   const [tasks, setTasks] = useState([]);
@@ -89,13 +90,24 @@ const Board = () => {
     return sortedTasks;
   };
 
-  const updateTaskStatus = (taskId, newStatus) => {
+  const updateTaskStatus = async (taskId, newStatus) => {
     const updatedTasks = tasks.map(task =>
       task.id === taskId ? { ...task, status: newStatus } : task
     );
 
     setTasks(updatedTasks);
     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+
+    // Adding a delay before applying the transition class
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    // Find the column element and add the transition class
+    const column = document.querySelector(`[data-status="${newStatus}"]`);
+    if (column) {
+      column.classList.add('task-slide-down');
+      // Removing the class after the transition completes
+      setTimeout(() => column.classList.remove('task-slide-down'), 300);
+    }
   };
 
   const groupedTasks = groupTasks(tasks, grouping);
@@ -114,6 +126,7 @@ const Board = () => {
               title={user.name}
               tasks={sortTasks(groupedTasks[user.name] || [], ordering)}
               updateTaskStatus={updateTaskStatus}
+              dataStatus={user.name}
             />
           ))}
         {grouping !== 'user' &&
@@ -123,6 +136,7 @@ const Board = () => {
               title={group}
               tasks={sortTasks(groupTasks, ordering)}
               updateTaskStatus={updateTaskStatus}
+              dataStatus={group}
             />
           ))}
       </div>

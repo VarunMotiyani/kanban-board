@@ -1,6 +1,6 @@
 import React from 'react';
 import Task from './Task';
-import TaskList from './TaskList';
+// import TaskList from './TaskList';
 import '../styles/styles.css';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
@@ -13,7 +13,7 @@ import SignalCellularAlt2BarOutlinedIcon from '@mui/icons-material/SignalCellula
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
 import AssignmentLateOutlinedIcon from '@mui/icons-material/AssignmentLateOutlined';
 
-const Column = ({ title, tasks, updateTaskStatus }) => {
+const Column = ({ title, tasks, updateTaskStatus, dataStatus}) => {
   const getStatusIcon = () => {
     if (title === 'Backlog') {
       return <HighlightOffOutlinedIcon className="status-icon" />;
@@ -41,7 +41,7 @@ const Column = ({ title, tasks, updateTaskStatus }) => {
   };
 
   return (
-    <div className="column">
+    <div className="column" data-status = {dataStatus}>
       <div className="column-header">
         <h2 className="column-title">{getStatusIcon()} {title}</h2>
       </div>

@@ -164,4 +164,29 @@
   .display-options > * {
     margin-bottom: 0;
   }
+  /* Add a class for the transition effect */
+.task-transition {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  /* Apply the transition effect on the task elements */
+  .task-transition .task {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Add a class for the alternative transition effect */
+.task-slide-down {
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  /* Apply the alternative transition effect on the task elements */
+  .task-slide-down .task {
+    opacity: 1;
+    transform: translateY(0);
+  }
   
