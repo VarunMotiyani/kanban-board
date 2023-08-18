@@ -1,58 +1,105 @@
-/* Board */
-/* Board */
-/* Board */
-/* Board */
-/* Board */
-.board {
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --navbar-height: 64px;
+  }
+  
+  /* Apply default font and background to the entire page */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+  }
+  
+  /* Board */
+  .board {
     display: flex;
-    padding: 20px;
-    background-color: #f5f5f5; /* Set the background color for the entire board */
-    height: 100vh; /* Set the height to 100% of the viewport height */
-    overflow-x: auto; /* Add horizontal scroll when columns overflow */
+    padding: 0;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    overflow-x: auto;
   }
   
   .column {
     flex: 0 0 auto;
-    padding: 0px;
     width: 300px;
-    margin-right: 10px; /* Add margin only on the right side */
-    background-color: transparent; /* Remove background color for each column */
-    overflow-y: auto; /* Add vertical scroll if content overflows */
+    margin: 10px;
+    padding: 0;
+    background-color: transparent;
+    overflow-y: auto;
+    /* box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1); */
+  }
+
+  
+  .column-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .title-icon{
+
+  }
+  .title-length {
+
+    display: flex;
+    align-items: center;
+    color: #888; /* Set the color to grey */
+    font-size: medium;
+  }
+  
+  
+  .title-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .column-icon {
+    margin-left: 5px; /* Adjust the spacing as needed */
   }
   .column-header {
-    /* background-color: #ffffff; */
-    /* padding: 10px; */
-    /* border-bottom: 1px solid #e0e0e0; */
     position: sticky;
-    top: 0; /* Stick the header to the top while scrolling */
-    z-index: 1; /* Ensure the header appears above the tasks */
-  }
-  .column:last-child {
-    margin-right: 0; /* Remove margin from the last column */
+    top: var(--navbar-height);
+    z-index: 1;
+    /* background-color: #ffffff; */
+    padding: 5px;
+    border-bottom: 1px solid #e0e0e0;
   }
   
   .column-title {
     font-size: 18px;
-    margin-bottom: 10px;
+    margin: 5px;
   }
-  
-  /* Rest of your existing styles... */
-  
-  
-  /* Rest of your existing styles... */
-  
-  
-  /* Rest of your existing styles... */
-  
-  /* Rest of your existing styles... */
-  
   
   .task {
     background-color: #f5f5f5;
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 0;
     margin-bottom: 10px;
     position: relative;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+  }
+  .task-list {
+    max-height: calc(100vh - var(--navbar-height));
+    overflow-y: auto;
+    margin-top: 70px; /* Adjust the padding as needed */
+
+  }
+  
+  .task:hover {
+    background-color: #e0e0e0;
   }
   
   .options-button {
@@ -91,6 +138,7 @@
   }
   
   /* Navbar */
+  
   .dropdown {
     position: relative;
     display: inline-block;
@@ -109,7 +157,7 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
   
@@ -117,7 +165,8 @@
     display: block;
   }
   
-  .grouping, .ordering {
+  .grouping,
+  .ordering {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
@@ -127,8 +176,8 @@
     margin-right: 5px;
   }
   
-  /* styles.css */
-.display-dropdown {
+  /* Display Dropdown */
+  .display-dropdown {
     position: relative;
     display: inline-block;
   }
@@ -151,7 +200,7 @@
     top: 100%;
     right: 0;
     background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     width: 240px;
     border: 1px solid #ddd;
@@ -164,29 +213,39 @@
   .display-options > * {
     margin-bottom: 0;
   }
-  /* Add a class for the transition effect */
-.task-transition {
+  
+  /* Transition Effects */
+  .task-transition,
+  .task-slide-down {
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   }
   
-  /* Apply the transition effect on the task elements */
-  .task-transition .task {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Add a class for the alternative transition effect */
-.task-slide-down {
-    opacity: 0;
-    transform: translateY(-30px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  }
-  
-  /* Apply the alternative transition effect on the task elements */
+  .task-transition .task,
   .task-slide-down .task {
     opacity: 1;
     transform: translateY(0);
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .board {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .column {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* Media query for screens with a width of 480px or less */
+  @media screen and (max-width: 480px) {
+    .task {
+      max-width: 100%;
+    }
   }
   

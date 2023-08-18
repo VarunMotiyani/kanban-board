@@ -12,6 +12,9 @@ import SignalCellularAlt1BarOutlinedIcon from '@mui/icons-material/SignalCellula
 import SignalCellularAlt2BarOutlinedIcon from '@mui/icons-material/SignalCellularAlt2BarOutlined';
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
 import AssignmentLateOutlinedIcon from '@mui/icons-material/AssignmentLateOutlined';
+import AddIcon from '@mui/icons-material/Add';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import NotInterestedIcon from '@mui/icons-material/NotInterested';
 
 const Column = ({ title, tasks, updateTaskStatus, dataStatus}) => {
   const getStatusIcon = () => {
@@ -26,7 +29,7 @@ const Column = ({ title, tasks, updateTaskStatus, dataStatus}) => {
     } else if (title === 'Cancelled') {
       return <CancelOutlinedIcon className="status-icon" />;
     } else if (title === 'No Priority') {
-      return <MoreHorizOutlinedIcon className="status-icon" />;
+      return <NotInterestedIcon className="status-icon" />;
     } else if (title === 'Low') {
       return <SignalCellularAlt1BarOutlinedIcon className="status-icon" />;
     } else if (title === 'Medium') {
@@ -41,17 +44,23 @@ const Column = ({ title, tasks, updateTaskStatus, dataStatus}) => {
   };
 
   return (
-    <div className="column" data-status = {dataStatus}>
+    <div className="column" data-status={dataStatus}>
       <div className="column-header">
-        <h2 className="column-title">{getStatusIcon()} {title}</h2>
+        <h2 className="column-title">
+          <span className="title-icon">
+            {getStatusIcon()} 
+          </span>
+          <span className='title'>{title}</span>
+          <span className='title-length'>{tasks.length}</span>
+          <span className="title-right">
+          <AddIcon fontSize='small' className="column-icon" style={{ fontSize: '18px', color: 'grey' }} />
+            <MoreHorizIcon className="column-icon" style={{ fontSize: '18px', color: 'grey' }} />
+          </span>
+        </h2>
       </div>
       <div className="task-list">
         {tasks.map(task => (
-          <Task
-            key={task.id}
-            task={task}
-            updateTaskStatus={updateTaskStatus}
-          />
+          <Task key={task.id} task={task} updateTaskStatus={updateTaskStatus} />
         ))}
       </div>
     </div>

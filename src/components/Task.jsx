@@ -1,23 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { Card, CardHeader, CardContent, Typography, IconButton, Menu, MenuItem, Avatar, Box } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  Typography,
+  IconButton,
+  Menu,
+  MenuItem,
+  Avatar,
+  Box
+} from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { fetchTasks } from '../services/ApiService';
+import {
+  fetchTasks
+} from '../services/ApiService';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import RunCircleOutlinedIcon from '@mui/icons-material/RunCircleOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import SignalCellularAlt1BarOutlinedIcon from '@mui/icons-material/SignalCellularAlt1BarOutlined';
 import SignalCellularAlt2BarOutlinedIcon from '@mui/icons-material/SignalCellularAlt2BarOutlined';
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
 import AssignmentLateOutlinedIcon from '@mui/icons-material/AssignmentLateOutlined';
+import NotInterestedIcon from '@mui/icons-material/NotInterested';
 
-const Task = ({ task, updateTaskStatus }) => {
+const userColorMapping = {}; // Color mapping object to store user colors
+
+const Task = ({
+  task,
+  updateTaskStatus
+}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [expanded, setExpanded] = useState(false);
   const [grouping, setGrouping] = useState(localStorage.getItem('grouping') || '');
-  console.log(grouping)
 
   const handleOptionsClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -37,12 +53,11 @@ const Task = ({ task, updateTaskStatus }) => {
   };
 
   const userInitials = task.userId.split('-').map(word => word[0]).join('');
-  const avatarBackgroundColor = getRandomColor(); // Get a random color for the avatar background
-//   console.log(grouping)
+  const avatarBackgroundColor = getRandomColor(task.userId); // Get a consistent color for the avatar background
 
   const renderPriorityIcon = () => {
     if (grouping !== 'priority') {
-      if (task.priority === 0) return <MoreHorizOutlinedIcon className="priority-icon" />;
+      if (task.priority === 0) return <NotInterestedIcon className="priority-icon" />;
       if (task.priority === 1) return <SignalCellularAlt1BarOutlinedIcon className="priority-icon" />;
       if (task.priority === 2) return <SignalCellularAlt2BarOutlinedIcon className="priority-icon" />;
       if (task.priority === 3) return <SignalCellularAltOutlinedIcon className="priority-icon" />;
@@ -71,7 +86,6 @@ const Task = ({ task, updateTaskStatus }) => {
             <Avatar sx={{ bgcolor: avatarBackgroundColor, marginBottom: '-8px', width: '25px', height: '25px', marginLeft: 'auto' }}>
               <Typography sx={{ fontSize: '0.8rem' }}>{userInitials}</Typography>
             </Avatar>
-
           </Box>
         }
         sx={{ paddingBottom: '4px' }}
@@ -95,11 +109,11 @@ const Task = ({ task, updateTaskStatus }) => {
             </IconButton> */}
           </Typography>
         )}
-        
+
         <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Box>
-        {renderPriorityIcon()}
-            </Box>
+          <Box>
+            {renderPriorityIcon()}
+          </Box>
           {task.tag}
 
           <IconButton aria-label="options" onClick={handleOptionsClick}>
@@ -132,9 +146,12 @@ const Task = ({ task, updateTaskStatus }) => {
   );
 };
 
-// Function to generate a random color in hexadecimal format
-function getRandomColor() {
-  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+// Function to generate a consistent color based on userId
+function getRandomColor(userId) {
+  if (!userColorMapping[userId]) {
+    userColorMapping[userId] = '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+  return userColorMapping[userId];
 }
 
 export default Task;

@@ -13,6 +13,7 @@ import {
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SegmentIcon from '@mui/icons-material/Segment';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import TuneIcon from '@mui/icons-material/Tune';
 
 const Navbar = ({ handleGroupingChange, handleOrderingChange }) => {
   const [displayMenuAnchor, setDisplayMenuAnchor] = React.useState(null);
@@ -59,7 +60,8 @@ const Navbar = ({ handleGroupingChange, handleOrderingChange }) => {
   };
 
   return (
-    <AppBar position="static" color="primary">
+
+    <AppBar position="fixed" color="primary">
       <Toolbar>
         <Button
           color="inherit"
@@ -69,7 +71,7 @@ const Navbar = ({ handleGroupingChange, handleOrderingChange }) => {
           onClick={openDisplayMenu}
           style={{ color: 'black', fontWeight: 'bold' }}
         >
-          <SegmentIcon />
+          <TuneIcon />
           Display
           <ArrowDropDownIcon />
         </Button>
@@ -138,11 +140,12 @@ const Navbar = ({ handleGroupingChange, handleOrderingChange }) => {
             style={{ color: 'black', fontWeight: 'bold' }}
           >
             <ClearAllIcon sx={{ marginRight: 1 }} />
-            Clear Options
+            Clear Filter
           </Button>
         </FormControl>
       </Toolbar>
     </AppBar>
+
   );
 };
 
