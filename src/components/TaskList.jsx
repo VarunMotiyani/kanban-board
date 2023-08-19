@@ -4,18 +4,18 @@ import { fetchTasks } from '../services/ApiService'; // Adjust the import path
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
-
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const fetchedTasks = await fetchTasks();
       setTasks(fetchedTasks.tickets);
-
+      setUsers(fetchedTasks.users);
     }
 
     fetchData();
   }, []);
-  console.log(tasks);
+//   console.log(users)
 
   const updateTaskStatus = (taskId, newStatus) => {
     // Find the task in the tasks array by taskId

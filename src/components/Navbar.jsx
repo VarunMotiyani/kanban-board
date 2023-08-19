@@ -8,7 +8,7 @@ import {
   MenuItem,
   ListItemIcon,
   ListItemText,
-//   Divider,
+  Divider,
 } from '@mui/material';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import SegmentIcon from '@mui/icons-material/Segment';

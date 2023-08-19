@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import Column from './Column';
 import { fetchTasks } from '../services/ApiService';
 import '../styles/styles.css';
-// import TaskList from './TaskList';
+import TaskList from './TaskList';
 
 const Board = () => {
   const [tasks, setTasks] = useState([]);

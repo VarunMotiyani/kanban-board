@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   CardHeader,
@@ -33,20 +33,8 @@ const Task = ({
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [expanded, setExpanded] = useState(false);
-  const [users, setUsers] = useState([])
   const [grouping, setGrouping] = useState(localStorage.getItem('grouping') || '');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { users } = await fetchTasks();
-      setUsers(users);
-      setGrouping(localStorage.getItem('grouping') || ''); // Update grouping from localStorage
-    };
-
-    fetchData();
-  }, []);
-
-console.log(users)
   const handleOptionsClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
