@@ -82,7 +82,7 @@ const Board = () => {
     let sortedTasks = [...tasks];
 
     if (criteria === 'priority') {
-      sortedTasks.sort((a, b) => a.priority - b.priority); // Ascending order by priority
+      sortedTasks.sort((a, b) => b.priority - a.priority); // Ascending order by priority
     } else if (criteria === 'title') {
       sortedTasks.sort((a, b) => a.title.localeCompare(b.title)); // Ascending order by title
     }
