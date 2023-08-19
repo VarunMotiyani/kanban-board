@@ -1,250 +1,245 @@
 /* Reset default margin and padding */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  :root {
-    --navbar-height: 64px;
-  }
-  
-  /* Apply default font and background to the entire page */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-  }
-  
-  /* Board */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --navbar-height: 64px;
+}
+
+/* Apply default font and background to the entire page */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+}
+
+/* Board */
+.board {
+  display: flex;
+  padding: 0;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  overflow-x: auto;
+}
+
+.column {
+  flex: 0 0 auto;
+  width: 20%; /* Changed from width: 300px; to use relative units */
+  margin: 1.5%; /* Changed from margin: 10px; to use relative units */
+  padding: 0;
+  background-color: transparent;
+  overflow-y: auto;
+}
+
+.column-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5%; /* Changed from margin-bottom: 10px; to use relative units */
+}
+
+.title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.title-length {
+  display: flex;
+  align-items: center;
+  color: #888;
+  font-size: medium;
+}
+
+.title-right {
+  display: flex;
+  align-items: center;
+}
+
+.column-icon {
+  margin-left: 0.3125rem; /* Changed from margin-left: 5px; to use relative units */
+}
+
+.column-header {
+  position: sticky;
+  top: var(--navbar-height);
+  z-index: 1;
+  padding: 0.3125rem; /* Changed from padding: 5px; to use relative units */
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.column-title {
+  font-size: 1.125rem; /* Changed from font-size: 18px; to use relative units */
+  margin: 0.3125rem; /* Changed from margin: 5px; to use relative units */
+}
+
+.task {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 0;
+  margin-bottom: 1.5%; /* Changed from margin-bottom: 10px; to use relative units */
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0px 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.task-list {
+  max-height: calc(100vh - var(--navbar-height));
+  overflow-y: auto;
+  margin-top: 4.375rem; /* Changed from margin-top: 70px; to use relative units */
+}
+
+.task:hover {
+  background-color: #e0e0e0;
+}
+
+.options-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0.3125rem; /* Changed from top: 10px; to use relative units */
+  right: 0.3125rem; /* Changed from right: 10px; to use relative units */
+  font-size: 1rem; /* Changed from font-size: 16px; to use relative units */
+}
+
+.options {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  position: absolute;
+  top: 0.9375rem; /* Changed from top: 30px; to use relative units */
+  right: 0.3125rem; /* Changed from right: 10px; to use relative units */
+  padding: 0.3125rem; /* Changed from padding: 5px; to use relative units */
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  padding: 0.3125rem; /* Changed from padding: 5px; to use relative units */
+  cursor: pointer;
+}
+
+.task-title {
+  font-weight: bold;
+  margin-bottom: 0.3125rem; /* Changed from margin-bottom: 5px; to use relative units */
+}
+
+.task-type {
+  color: #888;
+}
+
+/* Navbar */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.625rem 1.25rem; /* Changed from padding: 10px 20px; to use relative units */
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 10rem; /* Changed from min-width: 160px; to use relative units */
+  box-shadow: 0px 0.3125rem 0.625rem 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.grouping,
+.ordering {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3125rem; /* Changed from margin-bottom: 5px; to use relative units */
+}
+
+span {
+  margin-right: 0.3125rem; /* Changed from margin-right: 5px; to use relative units */
+}
+
+/* Display Dropdown */
+.display-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.display-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 0.625rem 1.25rem; /* Changed from padding: 10px 20px; to use relative units */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.display-button.open {
+  background-color: #45a049;
+}
+
+.display-options {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0px 0.3125rem 0.625rem 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 15rem; /* Changed from width: 240px; to use relative units */
+  border: 1px solid #ddd;
+  padding: 0.625rem; /* Changed from padding: 10px; to use relative units */
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem; /* Changed from gap: 10px; to use relative units */
+}
+
+.display-options > * {
+  margin-bottom: 0;
+}
+
+/* Transition Effects */
+.task-transition,
+.task-slide-down {
+  opacity: 0;
+  transform: translateY(-0.625rem); /* Changed from transform: translateY(-10px); to use relative units */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.task-transition .task,
+.task-slide-down .task {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
   .board {
-    display: flex;
-    padding: 0;
-    background-color: #f5f5f5;
-    min-height: 100vh;
-    overflow-x: auto;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .column {
-    flex: 0 0 auto;
-    width: 300px;
-    margin: 10px;
-    padding: 0;
-    background-color: transparent;
-    overflow-y: auto;
-    /* box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1); */
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1.5%; /* Changed from margin-bottom: 10px; to use relative units */
   }
+}
 
-  
-  .column-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .title {
-    flex: 1;
-    display: flex;
-    align-items: center;
-  }
-  .title-icon{
-
-  }
-  .title-length {
-
-    display: flex;
-    align-items: center;
-    color: #888; /* Set the color to grey */
-    font-size: medium;
-  }
-  
-  
-  .title-right {
-    display: flex;
-    align-items: center;
-  }
-  
-  .column-icon {
-    margin-left: 5px; /* Adjust the spacing as needed */
-  }
-  .column-header {
-    position: sticky;
-    top: var(--navbar-height);
-    z-index: 1;
-    /* background-color: #ffffff; */
-    padding: 5px;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .column-title {
-    font-size: 18px;
-    margin: 5px;
-  }
-  
+/* Media query for screens with a width of 480px or less */
+@media screen and (max-width: 480px) {
   .task {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    padding: 0;
-    margin-bottom: 10px;
-    position: relative;
-    border-radius: 4px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
+    max-width: 100%;
   }
-  .task-list {
-    max-height: calc(100vh - var(--navbar-height));
-    overflow-y: auto;
-    margin-top: 70px; /* Adjust the padding as needed */
-
-  }
-  
-  .task:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .options-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 16px;
-  }
-  
-  .options {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    position: absolute;
-    top: 30px;
-    right: 10px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .option {
-    padding: 5px;
-    cursor: pointer;
-  }
-  
-  .task-title {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .task-type {
-    color: #888;
-  }
-  
-  /* Navbar */
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropbtn {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .grouping,
-  .ordering {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  span {
-    margin-right: 5px;
-  }
-  
-  /* Display Dropdown */
-  .display-dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .display-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .display-button.open {
-    background-color: #45a049;
-  }
-  
-  .display-options {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    width: 240px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .display-options > * {
-    margin-bottom: 0;
-  }
-  
-  /* Transition Effects */
-  .task-transition,
-  .task-slide-down {
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  }
-  
-  .task-transition .task,
-  .task-slide-down .task {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Responsive Styles */
-  @media screen and (max-width: 768px) {
-    .board {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .column {
-      width: 100%;
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-  }
-  
-  /* Media query for screens with a width of 480px or less */
-  @media screen and (max-width: 480px) {
-    .task {
-      max-width: 100%;
-    }
-  }
+}
