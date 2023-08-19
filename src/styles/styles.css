@@ -27,13 +27,13 @@ body {
   min-height: 100vh;
   overflow-x: auto;
   justify-content: space-around; /* Add this line for equal spacing */
-  margin: 0.1% 0.6%; /* Add this line for equal spacing between columns and page edges */
+  margin: 0.1% -0%; /* Add this line for equal spacing between columns and page edges */
 }
 
 .column {
   flex: 0 0 auto;
   width: 18.5%; /* Changed from width: 300px; to use relative units */
-  margin: 1% -10%; /* Adjusted margin values to have equal spacing between columns */
+  margin: 1% -3.7%; /* Adjusted margin values to have equal spacing between columns */
   padding: 0%;
   background-color: transparent;
   overflow-y: auto;
