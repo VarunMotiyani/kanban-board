@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Task from './Task'; // Adjust the import path
-import { fetchTasks } from '../services/ApiService'; // Adjust the import path
+import Task from './Task'; 
+import { fetchTasks } from '../services/ApiService'; 
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);

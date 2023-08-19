@@ -1,4 +1,4 @@
-/* Reset default margin and padding */
+
 * {
   margin: 0;
   padding: 0;
@@ -9,44 +9,41 @@
   --navbar-height: 64px;
 }
 
-/* Apply default font and background to the entire page */
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
   margin: 0;
 }
 
-/* Board */
-/* ... (previous CSS rules) ... */
 
-/* Board */
 .board {
   display: flex;
   padding: 0;
   background-color: #f5f5f5;
   min-height: 100vh;
   overflow-x: auto;
-  justify-content: space-around; /* Add this line for equal spacing */
-  margin: 0.1% -0%; /* Add this line for equal spacing between columns and page edges */
+  justify-content: space-around; 
+  margin: 0.1% -0%; 
 }
 
 .column {
   flex: 0 0 auto;
-  width: 18.5%; /* Changed from width: 300px; to use relative units */
-  margin: 1% -3.7%; /* Adjusted margin values to have equal spacing between columns */
+  width: 18.5%; 
+  margin: 1% -3.7%; 
   padding: 0%;
   background-color: transparent;
   overflow-y: auto;
 }
 
-/* ... (rest of the CSS rules) ... */
+
 
 
 .column-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5%; /* Changed from margin-bottom: 10px; to use relative units */
+  margin-bottom: 1.5%; 
 }
 
 .title {
@@ -68,20 +65,20 @@ body {
 }
 
 .column-icon {
-  margin-left: 0.3125rem; /* Changed from margin-left: 5px; to use relative units */
+  margin-left: 0.3125rem; 
 }
 
 .column-header {
   position: sticky;
   top: var(--navbar-height);
   z-index: 1;
-  padding: 0.3125rem; /* Changed from padding: 5px; to use relative units */
+  padding: 0.3125rem; 
   border-bottom: 1px solid #e0e0e0;
 }
 
 .column-title {
-  font-size: 1.125rem; /* Changed from font-size: 18px; to use relative units */
-  margin: 0.3125rem; /* Changed from margin: 5px; to use relative units */
+  font-size: 1.125rem; 
+  margin: 0.3125rem; 
 }
 
 .task {
@@ -94,13 +91,13 @@ body {
   box-shadow: 0px 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s;
   width: 100%;
-  max-width: 25rem; /* Using relative units, e.g., rem */
+  max-width: 25rem; 
 }
 
 .task-list {
   max-height: calc(100vh - var(--navbar-height));
   overflow-y: auto;
-  margin-top: 4.375rem; /* Changed from margin-top: 70px; to use relative units */
+  margin-top: 4.375rem; 
 }
 
 .task:hover {
@@ -112,30 +109,30 @@ body {
   border: none;
   cursor: pointer;
   position: absolute;
-  top: 0.3125rem; /* Changed from top: 10px; to use relative units */
-  right: 0.3125rem; /* Changed from right: 10px; to use relative units */
-  font-size: 1rem; /* Changed from font-size: 16px; to use relative units */
+  top: 0.3125rem; 
+  right: 0.3125rem; 
+  font-size: 1rem; 
 }
 
 .options {
   background-color: #fff;
   border: 1px solid #ddd;
   position: absolute;
-  top: 0.9375rem; /* Changed from top: 30px; to use relative units */
-  right: 0.3125rem; /* Changed from right: 10px; to use relative units */
-  padding: 0.3125rem; /* Changed from padding: 5px; to use relative units */
+  top: 0.9375rem; 
+  right: 0.3125rem; 
+  padding: 0.3125rem; 
   display: flex;
   flex-direction: column;
 }
 
 .option {
-  padding: 0.3125rem; /* Changed from padding: 5px; to use relative units */
+  padding: 0.3125rem; 
   cursor: pointer;
 }
 
 .task-title {
   font-weight: bold;
-  margin-bottom: 0.3125rem; /* Changed from margin-bottom: 5px; to use relative units */
+  margin-bottom: 0.3125rem; 
 }
 
 .task-type {
@@ -152,7 +149,7 @@ body {
 .dropbtn {
   background-color: #4caf50;
   color: white;
-  padding: 0.625rem 1.25rem; /* Changed from padding: 10px 20px; to use relative units */
+  padding: 0.625rem 1.25rem; 
   border: none;
   cursor: pointer;
 }
@@ -161,7 +158,7 @@ body {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 10rem; /* Changed from min-width: 160px; to use relative units */
+  min-width: 10rem; 
   box-shadow: 0px 0.3125rem 0.625rem 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -174,11 +171,11 @@ body {
 .ordering {
   display: flex;
   align-items: center;
-  margin-bottom: 0.3125rem; /* Changed from margin-bottom: 5px; to use relative units */
+  margin-bottom: 0.3125rem; 
 }
 
 span {
-  margin-right: 0.3125rem; /* Changed from margin-right: 5px; to use relative units */
+  margin-right: 0.3125rem; 
 }
 
 /* Display Dropdown */
@@ -190,7 +187,7 @@ span {
 .display-button {
   background-color: #4caf50;
   color: white;
-  padding: 0.625rem 1.25rem; /* Changed from padding: 10px 20px; to use relative units */
+  padding: 0.625rem 1.25rem; 
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -207,12 +204,12 @@ span {
   background-color: white;
   box-shadow: 0px 0.3125rem 0.625rem 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  width: 15rem; /* Changed from width: 240px; to use relative units */
+  width: 15rem; 
   border: 1px solid #ddd;
-  padding: 0.625rem; /* Changed from padding: 10px; to use relative units */
+  padding: 0.625rem; 
   display: flex;
   flex-direction: column;
-  gap: 0.3125rem; /* Changed from gap: 10px; to use relative units */
+  gap: 0.3125rem; 
 }
 
 .display-options > * {
@@ -223,7 +220,7 @@ span {
 .task-transition,
 .task-slide-down {
   opacity: 0;
-  transform: translateY(-0.625rem); /* Changed from transform: translateY(-10px); to use relative units */
+  transform: translateY(-0.625rem); 
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
@@ -243,11 +240,11 @@ span {
   .column {
     width: 100%;
     margin-right: 0;
-    margin-bottom: 1.5%; /* Changed from margin-bottom: 10px; to use relative units */
+    margin-bottom: 1.5%; 
   }
 }
 
-/* Media query for screens with a width of 480px or less */
+
 @media screen and (max-width: 480px) {
   .task {
     max-width: 100%;
