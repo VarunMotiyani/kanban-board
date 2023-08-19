@@ -17,22 +17,30 @@ body {
 }
 
 /* Board */
+/* ... (previous CSS rules) ... */
+
+/* Board */
 .board {
   display: flex;
   padding: 0;
   background-color: #f5f5f5;
   min-height: 100vh;
   overflow-x: auto;
+  justify-content: space-around; /* Add this line for equal spacing */
+  margin: 0.1% -0.3%; /* Add this line for equal spacing between columns and page edges */
 }
 
 .column {
   flex: 0 0 auto;
-  width: 16%; /* Changed from width: 300px; to use relative units */
-  margin: 1% 1% 1% 2.3% ; /* Changed from margin: 10px; to use relative units */
+  width: 18.5%; /* Changed from width: 300px; to use relative units */
+  margin: 1% -10%; /* Adjusted margin values to have equal spacing between columns */
   padding: 0%;
   background-color: transparent;
   overflow-y: auto;
 }
+
+/* ... (rest of the CSS rules) ... */
+
 
 .column-title {
   display: flex;
@@ -80,11 +88,13 @@ body {
   background-color: #f5f5f5;
   border: 1px solid #ddd;
   padding: 0;
-  margin-bottom: 1.5%; /* Changed from margin-bottom: 10px; to use relative units */
+  margin-bottom: 1.5%;
   position: relative;
   border-radius: 4px;
   box-shadow: 0px 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s;
+  width: 100%;
+  max-width: 25rem; /* Using relative units, e.g., rem */
 }
 
 .task-list {
