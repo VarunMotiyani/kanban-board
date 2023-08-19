@@ -17,4 +17,4 @@
         It has a state of selectedStatus which holds the current status of the task. This value is used in displaying appropriate icon for each task.
 17. the src/services/ApiService.jsx is where data from api is fetched using axios.
 18. src/styles/styles.css is the global styling file of the whole project. Styling for every component is mentioned in this using class and id identifiers.
-
+19. the web app is responsive and works well on all kinds of devices be it a phone, tablet or laptop, it adjusts well.
