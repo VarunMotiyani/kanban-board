@@ -1,0 +1,20 @@
+1. The Navbar contains Display button which when clicked contains 2 Button: Grouping and Ordering
+2. User can Group the tasks based on Status, User and Priority. Based on the selection the Page will change
+3. Ordering is done by Priority(Descending) and Title(Lexicographically Ascending)
+4. Each card has the task id and an avatar at the top. The avatar is made of the userId and same userId have same color avatar.
+5. Each Task Card is of same size. One line of the Title is shown and if the title is more than one line than user can Press the title and it will automatically expand.
+6. Bottom left corner of the card has the priority Icon. bottom centre has the Tag and bottom right Has a Button which contains all status exluding the currennt status of the card.
+7. The user can press any status and the card will move to that status column.
+8. The Grouping, Ordering and the status changes of the task are stored in the localStorage of the browser and even after page refresh it is maintaining the state by fetching data from localStorage.
+9. There is a button named Clear Filter in the Navbar which when pressed deletes everything from the localStorage and reverts back to the original state of the application when it was started.
+10. Refreshing the page takes data from localStorage and pressing Clear Filter button clears out the localStorage and fetches data back from the API.
+11. Task count are shown next to the Column Titles.
+12. Appropriate icons are added using MaterialUI.
+13. src/components/Board.jsx file contains the code for the posting and fetching of data to and from the localStorage. It also implements the functionality of Grouping and Ordering and status change of tasks.
+14. src/components/Navbar.jsx is the global navbar component.
+15. src/components/Task.jsx is where the Task Cards and their layout and data are defined. It is the global component for each card. It's parent component is TaskList.jsx
+16. src/components/TaskList.jsx is the parent component of Task.jsx ; it fetches task data from the api and sends single task data as props to Task.jsx
+        It has a state of selectedStatus which holds the current status of the task. This value is used in displaying appropriate icon for each task.
+17. the src/services/ApiService.jsx is where data from api is fetched using axios.
+18. src/styles/styles.css is the global styling file of the whole project. Styling for every component is mentioned in this using class and id identifiers.
+
