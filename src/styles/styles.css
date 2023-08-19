@@ -27,7 +27,7 @@ body {
   min-height: 100vh;
   overflow-x: auto;
   justify-content: space-around; /* Add this line for equal spacing */
-  margin: 0.1% -0.3%; /* Add this line for equal spacing between columns and page edges */
+  margin: 0.1% 0.6%; /* Add this line for equal spacing between columns and page edges */
 }
 
 .column {
